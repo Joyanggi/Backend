@@ -22,14 +22,14 @@ public class PostController {
     }
 
     // 산 리뷰 작성
-    @PostMapping(value = "api/post")
-    public ResponseEntity<Message> createPost(@ModelAttribute PostRequestDto requestDto) throws IOException {
-        return postService.createPost(requestDto);
+    @PostMapping(value = "api/mountain/{mountainId}/post")
+    public ResponseEntity<Message> createPost(@PathVariable("mountainId") Long id, @ModelAttribute PostRequestDto requestDto) throws IOException {
+        return postService.createPost(id, requestDto);
     }
 
     // 산 리뷰 수정
     @PutMapping(value = "api/post/{postId}")
-    public ResponseEntity<Message> modifyPost(@PathVariable("postId") Long id, @ModelAttribute PostRequestDto requestDto) {
+    public ResponseEntity<Message> modifyPost(@PathVariable("postId") Long id, @ModelAttribute PostRequestDto requestDto) throws IOException {
         return postService.modifyPost(id, requestDto);
     }
 
